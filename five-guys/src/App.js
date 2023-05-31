@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom';
 import './App.css';
+import LoginPage from './pages/Login';
+import PinPage from './pages/Pin';
+import NewOrderPage from './pages/NewOrder';
+import KitchenPage from './pages/KitchenDisplay';
+import DashboardPage from './pages/Dashboard';
 
-function App() {
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<LoginPage />} />
+        {/* <Route path="/login" component={LoginPage} /> */}
+        <Route path="/pin" element={<PinPage />} />
+        <Route path="/newOrder" element={<NewOrderPage />} />
+        <Route path="/kitchenDisplay" element={<KitchenPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+        {/* Add more routes as needed */}
+      </Routes>
+    </BrowserRouter>
+    
   );
 }
 
-export default App;
+export default App; 
