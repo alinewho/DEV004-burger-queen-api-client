@@ -2,13 +2,17 @@ import fiveguys from '../images/fiveguys-logo.webp'
 import envelope from '../images/envelope.png'
 import lock from '../images/lock.png'
 import restaurant from '../images/five-restaurant.png'
+import redBanner from '../images/redAndWhite.png'
 import '../Login.css';
 const LoginPage = () => {
     //Funciones
     return ( 
         <body>
-            <div className='bg-light d-flex justify-content-center align-items-center vh-100 w-50'>
-           <div className='bg-white p-5 rounded-5'>
+            <div>
+                <img src={redBanner} alt="red Banner" className='w-50' />
+            </div>
+            <div className='bg-white d-flex justify-content-center align-items-center vh-100 w-50'>
+           <div className='bg-light p-5 rounded-5'>
             <div className='d-flex justify-content-center'>
                 <img src={fiveguys} alt="five guys logo" style={{
                     width: 120,
@@ -41,12 +45,12 @@ const LoginPage = () => {
                 <a href="www.google.com" className='pt-2 text-decoration-none text-secondary fw-light ForgotPassword'>Forgot Password?</a>
             </div>
             <div className='btn bg-danger text-white w-100 mt-4 rounded-5'>Login</div>
-            <div className=' d-flex justify-content-around'>
+            {/* <div className=' d-flex justify-content-around'>
                 <a href="/pin" className='text-danger mt-4 ContinuePin'>Continue with PIN</a>
-            </div>
+            </div> */}
         </div> 
         </div>
-        <div className='ml-auto'>
+        <div className='ml-auto w-50'>
             <img src={restaurant} alt="restaurant" />
         </div>
         </body> 
