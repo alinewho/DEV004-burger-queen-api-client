@@ -38,7 +38,12 @@ const LoginPage = () => {
       console.log(res);
     } 
     )
-    .catch()
+    .catch(err => {
+      console.log(err)
+      if(err.response.data === "Incorrect password"){
+        console.log("Incorrect password")
+      }
+    })
   };
   //HTML
   return (
