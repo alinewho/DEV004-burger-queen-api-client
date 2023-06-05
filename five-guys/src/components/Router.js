@@ -14,9 +14,9 @@ const BrowserRoutes = () => {
             <Routes>
                 <Route path="/" element={<LoginPage />} />
                 <Route path="/pin" element={<PinPage />} />
-                <Route path="/neworder" element={<NewOrderPage />} />
+                {/* <Route path="/neworder" element={<NewOrderPage />} />
                 <Route path="/kitchen" element={<KitchenPage />} />
-                <Route path="/dashboard" element={<DashboardPage />} />
+                <Route path="/dashboard" element={<DashboardPage />} /> */}
             </Routes>
         </BrowserRouter>
     )
