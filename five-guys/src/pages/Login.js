@@ -6,6 +6,7 @@ import lock from "../images/lock.png";
 //import restaurant from '../images/five-restaurant.png'
 import redBanner from "../images/redAndWhite.png";
 import "../Login.css";
+import { loginAxios } from '../api/axios'
 
 const LoginPage = () => {
   //Funciones
@@ -32,6 +33,12 @@ const LoginPage = () => {
     setUser("");
     setPwd("");
     setSuccess(true);
+    loginAxios(user, pwd)
+    .then(res => {
+      console.log(res);
+    } 
+    )
+    .catch()
   };
   //HTML
   return (
