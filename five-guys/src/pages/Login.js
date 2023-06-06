@@ -8,9 +8,28 @@ import lock from "../images/lock.png";
 import redBanner from "../images/redAndWhite.png";
 import "../Login.css";
 import { loginAxios } from '../api/axios'
+import {AlertSuccess, AlertError} from "../components/Alert";
+// import { toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+
+
+
 
 const LoginPage = () => {
   //Funciones
+//   const showToastMessage = () => {
+//         toast.success('Welcome!', {
+//         position: "top-center",
+//         autoClose: 5000,
+//         hideProgressBar: false,
+//         closeOnClick: true,
+//         pauseOnHover: true,
+//         draggable: true,
+//         progress: undefined,
+//         theme: "light",
+//         })
+    
+// };
   const navigate = useNavigate();
 
   const { setAuth } = useContext(AuthContext);
@@ -39,19 +58,23 @@ const LoginPage = () => {
     loginAxios(user, pwd)
     .then(res => {
       console.log('SUCCESS------------' ,res);
-      navigate('/dashboard')
+      AlertSuccess();
+      setTimeout(() => {
+       navigate('/dashboard')
+      }, 1000);
+      
     } 
     )
     .catch(err => {
       console.log(err)
       if(err.response.data === "Incorrect password"){
-        console.log("Incorrect password")
+        AlertError("Incorrect password");
       } else if(err.response.data === "Cannot find user"){
-        console.log("Cannot find user")
+        AlertError("Cannot find user");
       }else if(err.response.data === "Email format is invalid"){
-        console.log("Email format is invalid")
+        AlertError("Email format is invalid");
       }else if(err.status === 404){
-        console.log("An error has occurred")
+        AlertError("An error has occurred");
       }
     })
   };

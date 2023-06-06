@@ -1,5 +1,6 @@
 import './App.css';
 import Router from './components/Router';
+import { ToastContainer } from 'react-toastify';
 
 
 const App = () => {
@@ -7,6 +8,7 @@ const App = () => {
   return (
     <>
     <Router />
+    <ToastContainer />
     </>
   );
 }
