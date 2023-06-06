@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState, useContext } from "react";
+import { useNavigate } from 'react-router-dom';
 import AuthContext from "../context/AuthProvider";
 import fiveguys from "../images/fiveguys-logo.webp";
 import envelope from "../images/envelope.png";
@@ -10,6 +11,8 @@ import { loginAxios } from '../api/axios'
 
 const LoginPage = () => {
   //Funciones
+  const navigate = useNavigate();
+
   const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
@@ -35,28 +38,26 @@ const LoginPage = () => {
     setSuccess(true);
     loginAxios(user, pwd)
     .then(res => {
-      console.log('SUCESS------------' ,res);
+      console.log('SUCCESS------------' ,res);
+      navigate('/dashboard')
     } 
     )
     .catch(err => {
       console.log(err)
       if(err.response.data === "Incorrect password"){
         console.log("Incorrect password")
+      } else if(err.response.data === "Cannot find user"){
+        console.log("Cannot find user")
+      }else if(err.response.data === "Email format is invalid"){
+        console.log("Email format is invalid")
+      }else if(err.status === 404){
+        console.log("An error has occurred")
       }
     })
   };
   //HTML
   return (
     <>
-      {/* {success ? (
-        <section>
-          <h1>You are logged in!</h1>
-          <br />
-          <p>
-            <a href="/pin">Go to Home</a>
-          </p>
-        </section>
-      ) : ( */}
         <div>
           <div>
             <img src={redBanner} alt="red Banner" className="w-50" />
@@ -140,7 +141,7 @@ const LoginPage = () => {
                       Forgot Password?
                     </a>
                   </div>
-                  <button className="btn bg-danger text-white w-100 mt-4 rounded-5">
+                  <button className="btn bg-danger text-white w-100 mt-4 rounded-5" >
                     Login
                   </button>
                 </form>
@@ -152,7 +153,6 @@ const LoginPage = () => {
             </div>
           </div>
         </div>
-       {/* )} */}
     </>
   );
 };
