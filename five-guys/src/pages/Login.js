@@ -35,7 +35,7 @@ const LoginPage = () => {
     setSuccess(true);
     loginAxios(user, pwd)
     .then(res => {
-      console.log(res);
+      console.log('SUCESS------------' ,res);
     } 
     )
     .catch(err => {
