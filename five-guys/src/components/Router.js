@@ -22,31 +22,8 @@ const BrowserRoutes = () => {
     )
 }
 
-/* const BrowserRoutes = createBrowserRouter([
-  {
-  path: '/',
-  element: <LoginPage />
-  },
-  {
-  path: '/pin',
-  element: <PinPage />
-  },
-  {
-  path: '/neworder',
-  element: <NewOrderPage />
-  },
-  {
-  path: '/kitchen',
-  element: <KitchenPage />
-  },
-  {
-  path: '/dashboard',
-  element: <DashboardPage />
-  },
-]) */
 
   return (
-    // <RouterProvider router={BrowserRoutes} />
     <BrowserRoutes />
   )
 }
