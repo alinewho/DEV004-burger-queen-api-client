@@ -60,7 +60,7 @@ const LoginPage = () => {
       console.log('SUCCESS------------' ,res);
       AlertSuccess();
       setTimeout(() => {
-       navigate('/dashboard')
+       navigate('/neworder')
       }, 1000);
       
     } 
