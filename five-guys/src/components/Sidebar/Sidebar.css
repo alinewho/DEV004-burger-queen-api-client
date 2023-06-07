@@ -1,0 +1,12 @@
+#parentM li a:hover{
+    background-color: #D30D2B;
+}
+
+.sidebarBtn:hover i{ 
+
+    color: #ffffff;
+}
+.sidebarBtn:hover span{ 
+
+    color: #ffffff;
+}
