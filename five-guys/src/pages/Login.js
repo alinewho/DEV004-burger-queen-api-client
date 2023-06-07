@@ -4,7 +4,7 @@ import AuthContext from "../context/AuthProvider";
 import fiveguys from "../images/fiveguys-logo.webp";
 import envelope from "../images/envelope.png";
 import lock from "../images/lock.png";
-//import restaurant from '../images/five-restaurant.png'
+import restaurant from '../images/five-restaurant.png'
 import redBanner from "../images/redAndWhite.png";
 import "../Login.css";
 import { loginAxios } from '../api/axios'
@@ -94,7 +94,7 @@ const LoginPage = () => {
               {errMsg}
             </p>
           </section>
-          <div className="bg-white d-flex justify-content-center align-items-center vh-100 w-50">
+          <div className="bg-white d-flex justify-content-center align-items-center vh-100 w-50 float-left imageFloat img-fluid">
             <div className="bg-light p-5 rounded-5">
               <div className="d-flex justify-content-center">
                 <img
@@ -175,6 +175,9 @@ const LoginPage = () => {
             </div> */}
             </div>
           </div>
+        </div>
+        <div className="d-flex align-items-center vh-100 w-50 float-right imageFloat img-fluid">
+          <img src={restaurant} alt="" />
         </div>
     </>
   );

@@ -8,3 +8,6 @@
 .ContinuePin{
     font-size: .90rem;
 }
+.imageFloat {
+    float: left;
+}
