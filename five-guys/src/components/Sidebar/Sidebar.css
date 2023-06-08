@@ -1,4 +1,4 @@
-#parentM li a:hover{
+/* #parentM li a:hover{
     background-color: #D30D2B;
 }
 
@@ -8,5 +8,18 @@
 }
 .sidebarBtn:hover span{ 
 
+    color: #ffffff;
+} */
+
+.sidebar ul li:hover {
+    background-color: #D30D2B;
+    border-radius: 5px;
+}
+.sidebar ul li:hover a{
+    color: #ffffff;
+}
+.active{
+    background-color: #D30D2B;
+    border-radius: 5px;
     color: #ffffff;
 }

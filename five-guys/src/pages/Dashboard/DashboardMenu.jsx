@@ -3,7 +3,7 @@ import { useState } from "react";
 import './Dashboard.css';
 
 
-const Dashboard = () => {
+const DashboardMenu = () => {
   const [style, setStyle] = useState(
     "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
   );
@@ -339,4 +339,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardMenu;

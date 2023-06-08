@@ -1,10 +1,11 @@
 // import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from '../pages/Login';
-import PinPage from '../pages/Pin';
-import NewOrderPage from '../pages/NewOrderWaiter';
 import KitchenPage from '../pages/KitchenDisplay';
-import DashboardPage from '../pages/Dashboard/Dashboard';
+import Dashboard from '../pages/Dashboard/Dashboard';
+import BreakfastPage from '../pages/Breakfast/BreakfastPage';
+import LunchPage from '../pages/LunchPage/LunchPage';
+import StatusPage from '../pages/StatusPage/StatusPage';
 
 const Router = () => {
 
@@ -13,10 +14,11 @@ const BrowserRoutes = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<LoginPage />} />
-                <Route path="/pin" element={<PinPage />} />
-                <Route path="/neworder" element={<NewOrderPage />} />
                 {/* <Route path="/kitchen" element={<KitchenPage />} />*/}
-                <Route path="/dashboard" element={<DashboardPage />} /> 
+                <Route path="/dashboard" element={<Dashboard />} /> 
+                <Route path='/breakfastmenu' element={<BreakfastPage />} />
+                <Route path='/lunchmenu' element={<LunchPage />} />
+                <Route path='/status' element={<StatusPage />} />
             </Routes>
         </BrowserRouter>
     )
