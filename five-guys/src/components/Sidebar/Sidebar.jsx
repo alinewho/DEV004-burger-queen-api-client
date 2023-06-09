@@ -43,7 +43,7 @@ const Sidebar = () => {
                                     <li className="nav-item ">
                                         <Link to="/breakfastmenu" className="nav-link text-black" aria-current="page">
                                          <span className='d-none d-sm-inline'>Breakfast</span>
-                                         <i class="bi bi-cup-hot ms-0 ms-sm-3"></i>
+                                         <i className="bi bi-cup-hot ms-0 ms-sm-3"></i>
                                          </Link>
                                          
                                     </li>
@@ -52,7 +52,7 @@ const Sidebar = () => {
                                     <li className="nav-item ">
                                     <Link to="/lunchmenu" className="nav-link text-black">
                                         <span className='d-none d-sm-inline'>Lunch</span>
-                                        <i class="bi bi-cup-straw ms-0 ms-sm-3"></i>
+                                        <i className="bi bi-cup-straw ms-0 ms-sm-3"></i>
                                     </Link>
                                     
                                 </li>
