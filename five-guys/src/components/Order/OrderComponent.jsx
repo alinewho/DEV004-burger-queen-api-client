@@ -2,12 +2,15 @@ import React from "react";
 import "./Order.css";
 import { getProductsAxios } from "../../api/axios";
 
-const OrderComponent = () => {
-  getProductsAxios().then((products) => {
-    console.log(products);
-  }).catch((err) => {
-    console.log(err);
-  });
+const OrderComponent = ({token}) => {
+
+  getProductsAxios(token)
+    .then((products) => {
+      console.log(products);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
   return (
     <div>
@@ -16,7 +19,7 @@ const OrderComponent = () => {
       <p>Order</p> <p>ID</p>
       <hr />
       <p>Oder info</p>
-      <div className="card mb-3 mt-5" style={{ "maxWidth": " 300px" }}>
+      <div className="card mb-3 mt-5" style={{ maxWidth: " 300px" }}>
         <div className="row g-0">
           <div className="col-md-4">
             <img src="..." class="img-fluid rounded-start" alt="..." />
