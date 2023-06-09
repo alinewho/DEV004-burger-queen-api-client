@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Order.css";
+import { getOrdersAxios } from "../../api/axios";
 // import { getProductsAxios } from "../../api/axios";
 
-const OrderComponent = () => {
+const OrderComponent = ({token}) => {
 
-  // const [items, setItems] = useState('');
-  // setItems(getProductsAxios(token))
-  // console.log(items);
+  const [items, setItems] = useState([]);
+
+  async function getOrders(){
+    const response = await getOrdersAxios(token);
+    setItems(response);
+  }
+
+  useEffect(() => {
+    const promises = async () => await getOrders();
+    promises();
+  }, []);
+
+
   return (
     <div>
       <h1>Current order</h1>
@@ -14,10 +25,11 @@ const OrderComponent = () => {
       <p>Order</p> <p>ID</p>
       <hr />
       <p>Oder info</p>
-      <div className="card mb-3 mt-5" style={{ maxWidth: " 300px" }}>
+      {items?.map((order) => (
+        <div className="card mb-3 mt-5" style={{ maxWidth: " 300px" }}>
         <div className="row g-0">
           <div className="col-md-4">
-            <img src="..." class="img-fluid rounded-start" alt="..." />
+            <img src={order.products} class="img-fluid rounded-start" alt="..." />
           </div>
           <div className="col-md-8">
             <div className="card-body">
@@ -32,6 +44,7 @@ const OrderComponent = () => {
           </div>
         </div>
       </div>
+      )) }
       <hr />
       <p>Total</p>
       <p>$0.00</p>

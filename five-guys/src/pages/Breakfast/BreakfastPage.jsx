@@ -18,7 +18,7 @@ const BreakfastPage = ({token}) => {
         <BreakfastMenu token={token}/>
       </div>
       <div className='col-3'>
-        <OrderComponent />
+        <OrderComponent token={token}/>
       </div>
     </div>
   )
