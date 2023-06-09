@@ -1,17 +1,12 @@
 import React from "react";
 import "./Order.css";
-import { getProductsAxios } from "../../api/axios";
+// import { getProductsAxios } from "../../api/axios";
 
-const OrderComponent = ({token}) => {
+const OrderComponent = () => {
 
-  getProductsAxios(token)
-    .then((products) => {
-      console.log(products);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-
+  // const [items, setItems] = useState('');
+  // setItems(getProductsAxios(token))
+  // console.log(items);
   return (
     <div>
       <h1>Current order</h1>

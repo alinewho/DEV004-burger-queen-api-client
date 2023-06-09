@@ -16,11 +16,16 @@ export const loginAxios = (email, password) => {
       } ) 
 }
 
-export const getProductsAxios = (token) => {
-  return AppAxios.get("/products", {
+export const getProductsAxios = async (token) => {
+  try {
+    const products = await AppAxios.get("/products", {
     withCredentials: true,
     headers: {
       'Authorization' : `Bearer ${token}`
   }
   });
+    return products.data;
+  } catch (error) {
+    console.log(error);
+  }
 };

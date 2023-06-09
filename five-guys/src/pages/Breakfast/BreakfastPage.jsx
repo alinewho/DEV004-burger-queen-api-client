@@ -7,16 +7,18 @@ import BreakfastMenu from '../../components/BreakfastMenu/BreakfastMenu'
 import OrderComponent from '../../components/Order/OrderComponent'
 
 const BreakfastPage = ({token}) => {
+
+
   return (
     <div className='d-flex'>
       <div className='w-auto'>
         <Sidebar />
       </div>
       <div className='col'>
-        <BreakfastMenu />
+        <BreakfastMenu token={token}/>
       </div>
       <div className='col-3'>
-        <OrderComponent token={token} />
+        <OrderComponent />
       </div>
     </div>
   )
