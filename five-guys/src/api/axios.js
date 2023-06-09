@@ -29,3 +29,16 @@ export const getProductsAxios = async (token) => {
     console.log(error);
   }
 };
+export const getOrdersAxios = async (token) => {
+  try {
+    const orders = await AppAxios.get("/orders", {
+    withCredentials: true,
+    headers: {
+      'Authorization' : `Bearer ${token}`
+  }
+  });
+    return orders.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
