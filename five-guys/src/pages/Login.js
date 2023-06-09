@@ -1,6 +1,5 @@
-import { useRef, useEffect, useState, useContext } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../context/AuthProvider";
 import fiveguys from "../images/fiveguys-logo.webp";
 import envelope from "../images/envelope.png";
 import lock from "../images/lock.png";
@@ -9,48 +8,33 @@ import redBanner from "../images/redAndWhite.png";
 import "../Login.css";
 import { loginAxios } from "../api/axios";
 import { AlertSuccess, AlertError } from "../components/Alert";
-// import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+
 
 const LoginPage = ({savedToken}) => {
 
   const navigate = useNavigate();
-
-  const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
-  const errRef = useRef();
-
-
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
-  const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState("false");
 
   useEffect(() => {
     userRef.current.focus();
   }, []);
 
-  useEffect(() => {
-    setErrMsg("");
-  }, [user, pwd]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(user, pwd);
     setUser("");
     setPwd("");
-    setSuccess(true);
+
     loginAxios(user, pwd)
       .then((res) => {
         console.log("SUCCESS------------", res);
         AlertSuccess();
         const accessToken = res.data.accessToken;
         savedToken(accessToken);
-        // window.localStorage.setItem('accessToken', accessToken);
-        
-        setTimeout(() => {
-          navigate("/breakfastmenu");
-        }, 1000);
+        navigate("/breakfastmenu");
       })
       .catch((err) => {
         console.log(err);
@@ -72,15 +56,7 @@ const LoginPage = ({savedToken}) => {
         <div>
           <img src={redBanner} alt="red Banner" className="w-50" />
         </div>
-        <section>
-          <p
-            ref={errRef}
-            className={errMsg ? "errmsg" : "offscreen"}
-            aria-live="assertive"
-          >
-            {errMsg}
-          </p>
-        </section>
+
         <div className="bg-white d-flex justify-content-center align-items-center vh-100 w-50 float-left imageFloat img-fluid">
           <div className="bg-light p-5 rounded-5">
             <div className="d-flex justify-content-center">
