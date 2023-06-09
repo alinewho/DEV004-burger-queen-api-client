@@ -8,10 +8,10 @@ const BreakfastMenu = () => {
     <div className='bg-light vh-100'>
       <div className='pt-5 ps-5'>
       <h1>Breakfast Menu</h1>
-       <div className="card mb-3 mt-5" style={{'max-width':' 400px'}}>
+      <div className="card mb-3 mt-5" style={{'maxWidth':' 400px'}}>
         <div className="row g-0">
           <div className='col-md-4'>
-          <img src="..." class="img-fluid rounded-start" alt="..."/>
+          <img src="..." className="img-fluid rounded-start" alt="..."/>
           </div>
           <div className='col-md-8'>
             <div className='card-body'>
@@ -22,7 +22,7 @@ const BreakfastMenu = () => {
             </div>
           </div>
         </div>
-       </div>
+      </div>
       </div> 
     </div>
     
