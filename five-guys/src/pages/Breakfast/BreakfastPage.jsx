@@ -6,7 +6,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import BreakfastMenu from '../../components/BreakfastMenu/BreakfastMenu'
 import OrderComponent from '../../components/Order/OrderComponent'
 
-const BreakfastPage = () => {
+const BreakfastPage = ({token}) => {
   return (
     <div className='d-flex'>
       <div className='w-auto'>
@@ -16,7 +16,7 @@ const BreakfastPage = () => {
         <BreakfastMenu />
       </div>
       <div className='col-3'>
-        <OrderComponent />
+        <OrderComponent token={token} />
       </div>
     </div>
   )
