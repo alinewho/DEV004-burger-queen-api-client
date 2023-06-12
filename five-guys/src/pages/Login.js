@@ -30,7 +30,6 @@ const LoginPage = ({savedToken}) => {
 
     loginAxios(user, pwd)
       .then((res) => {
-        console.log("SUCCESS------------", res);
         AlertSuccess();
         const accessToken = res.data.accessToken;
         savedToken(accessToken);
