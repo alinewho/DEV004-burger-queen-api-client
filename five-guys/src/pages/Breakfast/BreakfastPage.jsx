@@ -40,8 +40,8 @@ const BreakfastPage = ({ token }) => {
     }
     setTotalSum(cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0));
     
-    setCartItems([...cartItems, item]);
-    setTotalSum(totalSum + item.price);
+    // setCartItems([...cartItems, item]);
+    // setTotalSum(totalSum + item.price);
   };
 
 
@@ -97,7 +97,7 @@ const BreakfastPage = ({ token }) => {
       </article>
       <article className="col-3">
 
-        <OrderComponent token={token} cartItems={cartItems} totalSum={totalSum} handleRemoveFromCart={handleRemoveFromCart} handleAddToCart={handleAddToCart} />
+        <OrderComponent token={token} cartItems={cartItems} totalSum={totalSum} handleRemoveFromCart={handleRemoveFromCart}  />
       </article>
     </div>
   );
