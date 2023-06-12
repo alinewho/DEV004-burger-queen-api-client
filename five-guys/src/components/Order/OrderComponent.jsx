@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "./Order.css";
-import { getOrdersAxios } from "../../api/axios";
+// import { getOrdersAxios } from "../../api/axios";
 // import { getProductsAxios } from "../../api/axios";
 
-const OrderComponent = ({token}) => {
-
+const OrderComponent = ({ token, cartItems, totalSum, handleRemoveFromCart, handleAddToCart }) => {
   const [items, setItems] = useState([]);
 
-  async function getOrders(){
-    const response = await getOrdersAxios(token);
-    setItems(response);
-  }
+  // async function getOrders() {
+  //   const response = await getOrdersAxios(token);
+  //   setItems(response);
+  // }
 
   useEffect(() => {
-    const promises = async () => await getOrders();
-    promises();
+    // const promises = async () => await getOrders();
+    // promises();
   }, []);
-
 
   return (
     <div>
@@ -25,29 +23,47 @@ const OrderComponent = ({token}) => {
       <p>Order</p> <p>ID</p>
       <hr />
       <p>Oder info</p>
-      {items?.map((order) => (
-        <div className="card mb-3 mt-5" style={{ maxWidth: " 300px" }}>
-        <div className="row g-0">
-          <div className="col-md-4">
-            <img src={order.products} class="img-fluid rounded-start" alt="..." />
-          </div>
-          <div className="col-md-8">
-            <div className="card-body">
-              <h5 className="card-title">Product</h5>
-              <p className="card-text">
-                <small className="text-body-secondary">Price</small>
-              </p>
-              <button>+</button>
-              <p>count</p>
-              <button>-</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      )) }
+      {
+        (cartItems.length > 0 ? (
+          <>
+            {cartItems?.map((order) => (
+              <div
+                key={order.id}
+                className="card mb-3 mt-5"
+                style={{ maxWidth: " 300px" }}
+              >
+                <div className="row g-0">
+                  <div className="col-md-4">
+                    <img
+                      src={order.image}
+                      class="img-fluid rounded-start"
+                      alt="..."
+                    />
+                  </div>
+                  <div className="col-md-8">
+                    <div className="card-body">
+                      <h5 className="card-title">{order.name} </h5>
+                      <p className="card-text">
+                        <small className="text-body-secondary">
+                          {order.price}
+                        </small>
+                      </p>
+                      <button  >+</button>
+                      <p>{order.quantity}</p>
+                      <button onClick={() => handleRemoveFromCart(order)}>-</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </>
+        ) : (
+          <p>No orders</p>
+        ))
+      }
       <hr />
       <p>Total</p>
-      <p>$0.00</p>
+      <p>{totalSum}</p>
       <button> Place Order</button>
     </div>
   );
