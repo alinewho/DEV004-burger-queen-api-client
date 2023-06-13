@@ -9,9 +9,6 @@ import { getProductsAxios } from "../../api/axios";
 // import BreakfastMenu2 from '../../components/BreakfastMenu/BreakfastMenu2'
 import AddBtn from "../../images/AddBtn.png";
 
-
-
-
 const BreakfastPage = ({ token }) => {
   const [items, setItems] = useState([]);
   const [cartItems, setCartItems] = useState([]);
@@ -27,30 +24,46 @@ const BreakfastPage = ({ token }) => {
     promises();
   }, []);
 
-  const handleAddToCart = (item) => {
-    const index = cartItems.findIndex((x) => x.id === item.id);
-    if (index === -1) {
-      setCartItems([...cartItems, item]);
-    } else {
+
+  const incrementQty = (item) => {
+    setCartItems(
+      cartItems.map((cart) =>
+        cart.id === item.id ? { ...cart, quantity: cart.quantity + 1 } : cart
+      )
+    );
+  };
+
+  const decrementQuantity = (item) => {
+    if (item.quantity > 1) {
       setCartItems(
-        cartItems.map((x) =>
-          x.id === item.id? {...x, quantity: x.quantity + 1 } : x
+        cartItems.map((cart) =>
+          cart.id === item.id
+            ? {
+                ...cart,
+                quantity: cart.quantity > 1 ? cart.quantity - 1 : 1,
+              }
+            : cart
         )
       );
+    } else {
+      handleRemoveFromCart(item);
     }
-    setTotalSum(cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0));
-    
-    // setCartItems([...cartItems, item]);
-    // setTotalSum(totalSum + item.price);
   };
 
+  const handleAddToCart = (item) => {
+    item.quantity = 1;
+    setCartItems([...cartItems, item]);
+  };
 
   const handleRemoveFromCart = (item) => {
-    const conditional = cartItems.filter((cart) => cart.id!== item.id);
-    setCartItems(conditional);
-    setTotalSum(totalSum - item.price);
+    const updatedCartItems = cartItems.filter((cart) => cart.id !== item.id);
+    setCartItems(updatedCartItems);
   };
 
+  useEffect(() => {
+    const sum = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    setTotalSum(sum);
+  }, [cartItems]);
 
   return (
     <div className="d-flex">
@@ -96,8 +109,14 @@ const BreakfastPage = ({ token }) => {
         </article>
       </article>
       <article className="col-3">
-
-        <OrderComponent token={token} cartItems={cartItems} totalSum={totalSum} handleRemoveFromCart={handleRemoveFromCart}  />
+        <OrderComponent
+          token={token}
+          cartItems={cartItems}
+          totalSum={totalSum}
+          handleRemoveFromCart={handleRemoveFromCart}
+          incrementQty={incrementQty}
+          decrementQuantity={decrementQuantity}
+        />
       </article>
     </div>
   );
