@@ -5,12 +5,13 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import OrderComponent from "../../components/Order/OrderComponent";
 import { getProductsAxios, placeOrdersAxios } from "../../api/axios";
 import BreakfastMenu from "../../components/BreakfastMenu/BreakfastMenu";
-import { alertToasty } from "../../components/Alert";
+import { AlertError, alertToasty } from "../../components/Alert";
 
 const BreakfastPage = ({ token }) => {
   const [items, setItems] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [totalSum, setTotalSum] = useState(0);
+  const [client, setClient] = useState("");
 
   async function getProducts() {
     const response = await getProductsAxios(token);
@@ -21,7 +22,6 @@ const BreakfastPage = ({ token }) => {
     const promises = async () => await getProducts();
     promises();
   }, []);
-
 
   const incrementQty = (item) => {
     setCartItems(
@@ -58,29 +58,34 @@ const BreakfastPage = ({ token }) => {
     setCartItems(updatedCartItems);
   };
 
-
   useEffect(() => {
-    const sum = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    const sum = cartItems.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0
+    );
     setTotalSum(sum);
   }, [cartItems]);
 
-  const placeOrder = async (client) => {
-  
-    const dt = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    
+  const placeOrder = async () => {
+    const dt = new Date().toISOString().slice(0, 19).replace("T", " ");
+
     const pedido = {
       client: client,
       products: cartItems,
       status: "pending",
       dateEntry: dt,
     };
-  
-    await placeOrdersAxios(token, pedido);
-  
-    setCartItems([]);
-    alertToasty("Order placed successfully");
+    await placeOrdersAxios(token, pedido, {
+      onError: () => {
+        AlertError("Error");
+      },
+      onSuccess: () => {
+        setClient("");
+        setCartItems([]);
+        alertToasty("Order placed successfully");
+      },
+    });
   };
-
 
   return (
     <div className="d-flex">
@@ -89,7 +94,11 @@ const BreakfastPage = ({ token }) => {
       </article>
       <article className="col">
         {/* <BreakfastMenu2 token={token}/> */}
-        <BreakfastMenu token={token} items={items} handleAddToCart={handleAddToCart} />
+        <BreakfastMenu
+          token={token}
+          items={items}
+          handleAddToCart={handleAddToCart}
+        />
       </article>
       <article className="col-3">
         <OrderComponent
@@ -100,6 +109,8 @@ const BreakfastPage = ({ token }) => {
           incrementQty={incrementQty}
           decrementQuantity={decrementQuantity}
           placeOrder={placeOrder}
+          client={client}
+          setClient={setClient}
         />
       </article>
     </div>
