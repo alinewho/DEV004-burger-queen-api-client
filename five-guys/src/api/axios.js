@@ -42,3 +42,17 @@ export const getOrdersAxios = async (token) => {
     console.log(error);
   }
 };
+
+export const placeOrdersAxios = async (token, order) => {
+  try {
+    const orders = await AppAxios.post("/orders", order, {
+    headers: {
+      'Authorization' : `Bearer ${token}`,
+      'Content-Type': 'application/json',
+  }
+  });
+    return orders.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
