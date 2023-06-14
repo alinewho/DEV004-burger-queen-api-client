@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Order.css";
-import BtnAddRemove from "../BtnAddRemove/BtnAddRemove";
 // import { getOrdersAxios } from "../../api/axios";
 // import { getProductsAxios } from "../../api/axios";
 
@@ -10,7 +9,13 @@ const OrderComponent = ({
   totalSum,
   incrementQty,
   decrementQuantity,
+  placeOrder,
 }) => {
+  const [userId, setUserId] = useState("");
+  const [client, setClient] = useState("");
+  const [status, setStatus] = useState("");
+  const [dateEntry, setDateEntry] = useState([]);
+
   // async function getOrders() {
   //   const response = await getOrdersAxios(token);
   //   setItems(response);
@@ -21,10 +26,14 @@ const OrderComponent = ({
     // promises();
   }, []);
 
+ 
+
   return (
     <div>
       <h1>Current order</h1>
-      <input placeholder="Name" autoComplete="off"></input>
+      <form onSubmit={(e) => e.preventDefault()}>
+      <input placeholder="Name" autoComplete="off" required onChange={(e) => setClient(e.target.value)}></input>
+      </form>
       <p>Order</p> <p>ID</p>
       <hr />
       <p>Oder info</p>
@@ -47,13 +56,10 @@ const OrderComponent = ({
                 <div className="col-md-8">
                   <div className="card-body">
                     <h5 className="card-title">{order.name} </h5>
-                    <p className="card-text">
-                    </p>
-                    <button onClick={() => incrementQty(order)} >+</button>
+                    <p className="card-text"></p>
+                    <button onClick={() => incrementQty(order)}>+</button>
                     <p>{order.quantity}</p>
-                    <button onClick={() => decrementQuantity(order)}>
-                      -
-                    </button>
+                    <button onClick={() => decrementQuantity(order)}>-</button>
                   </div>
                 </div>
               </div>
@@ -66,7 +72,7 @@ const OrderComponent = ({
       <hr />
       <p>Total</p>
       <p>{totalSum}</p>
-      <button> Place Order</button>
+      <button onClick={() => placeOrder(client)}> Place Order</button>
     </div>
   );
 };

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import "./BreakfastPage.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-// import BreakfastMenu from '../../components/BreakfastMenu/BreakfastMenu'
 import OrderComponent from "../../components/Order/OrderComponent";
-import { getProductsAxios } from "../../api/axios";
-// import BreakfastMenu2 from '../../components/BreakfastMenu/BreakfastMenu2'
-import AddBtn from "../../images/AddBtn.png";
+import { getProductsAxios, placeOrdersAxios } from "../../api/axios";
+import BreakfastMenu from "../../components/BreakfastMenu/BreakfastMenu";
+import { alertToasty } from "../../components/Alert";
 
 const BreakfastPage = ({ token }) => {
   const [items, setItems] = useState([]);
@@ -60,10 +58,29 @@ const BreakfastPage = ({ token }) => {
     setCartItems(updatedCartItems);
   };
 
+
   useEffect(() => {
     const sum = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
     setTotalSum(sum);
   }, [cartItems]);
+
+  const placeOrder = async (client) => {
+  
+    const dt = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    
+    const pedido = {
+      client: client,
+      products: cartItems,
+      status: "pending",
+      dateEntry: dt,
+    };
+  
+    await placeOrdersAxios(token, pedido);
+  
+    setCartItems([]);
+    alertToasty("Order placed successfully");
+  };
+
 
   return (
     <div className="d-flex">
@@ -72,41 +89,7 @@ const BreakfastPage = ({ token }) => {
       </article>
       <article className="col">
         {/* <BreakfastMenu2 token={token}/> */}
-        <article className="bg-light vh-100">
-          <div className="pt-5 ps-5">
-            <h1>Breakfast Menu</h1>
-            {items?.map((item) => (
-              <article
-                key={item.id}
-                className="base-foodcard card mt-5"
-                style={{ maxWidth: " 328px" }}
-              >
-                <figure className="item-container">
-                  <img src={item.image} alt={item.name} />
-                </figure>
-
-                <section className="second">
-                  <section className="desc">
-                    <p className="text-3">{item.name}</p>
-                    <p className="text-2">Ground Arabica Beans </p>
-                  </section>
-                  <section className="price">
-                    <p className="text-4">$</p>
-                    <p className="text-5">{item.price}</p>
-                  </section>
-                </section>
-                <section className="third">
-                  <button
-                    className="add-btn"
-                    onClick={() => handleAddToCart(item)}
-                  >
-                    <img src={AddBtn} alt="add button" />
-                  </button>
-                </section>
-              </article>
-            ))}
-          </div>
-        </article>
+        <BreakfastMenu token={token} items={items} handleAddToCart={handleAddToCart} />
       </article>
       <article className="col-3">
         <OrderComponent
@@ -116,6 +99,7 @@ const BreakfastPage = ({ token }) => {
           handleRemoveFromCart={handleRemoveFromCart}
           incrementQty={incrementQty}
           decrementQuantity={decrementQuantity}
+          placeOrder={placeOrder}
         />
       </article>
     </div>

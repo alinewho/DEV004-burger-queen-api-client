@@ -1,47 +1,47 @@
-import React, { useEffect, useState } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap-icons/font/bootstrap-icons.css'
-import './BreakfastMenu.css'
-import { getProductsAxios } from '../../api/axios'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "./BreakfastMenu.css";
+import AddBtn from "../../images/AddBtn.png";
 
-const BreakfastMenu = ({ token }) => {
-  const [items, setItems] = useState([]);
-
-  async function getProducts(){
-    const response = await getProductsAxios(token);
-    setItems(response);
-  }
-
-  useEffect(() => {
-    const promises = async () => await getProducts();
-    promises();
-  }, []);
+const BreakfastMenu = ({ token, items, handleAddToCart }) => {
 
   return (
-    <div className='bg-light vh-100'>
-      <div className='pt-5 ps-5'>
-      <h1>Breakfast Menu</h1>
-      {items?.map((item) => (
-        <div className="card mb-3 mt-5" style={{'maxWidth':' 400px'}}>
-        <div className="row g-0">
-          <div className='col-md-4'>
-          <img src={item.image} className="img-fluid rounded-start" alt={item.name}/>
-          </div>
-          <div className='col-md-8'>
-            <div className='card-body'>
-              <h5 className='card-title'>{item.name}</h5>
-              <p className='card-text'>Description</p>
-              <p className="card-text"><small className="text-body-secondary">{item.price}</small></p>
-              <button>+</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      )) }
-      </div> 
-    </div>
-    
-  )
-}
+    <article className="bg-light vh-100">
+          <div className="pt-5 ps-5">
+            <h1>Breakfast Menu</h1>
+            {items?.map((item) => (
+              <article
+                key={item.id}
+                className="base-foodcard card mt-5"
+                style={{ maxWidth: " 328px" }}
+              >
+                <figure className="item-container">
+                  <img src={item.image} alt={item.name} />
+                </figure>
 
-export default BreakfastMenu
+                <section className="second">
+                  <section className="desc">
+                    <p className="text-3">{item.name}</p>
+                    <p className="text-2">Ground Arabica Beans </p>
+                  </section>
+                  <section className="price">
+                    <p className="text-4">$</p>
+                    <p className="text-5">{item.price}</p>
+                  </section>
+                </section>
+                <section className="third">
+                  <button
+                    className="add-btn"
+                    onClick={() => handleAddToCart(item)}
+                  >
+                    <img src={AddBtn} alt="add button" />
+                  </button>
+                </section>
+              </article>
+            ))}
+          </div>
+        </article>
+  );
+};
+
+export default BreakfastMenu;
