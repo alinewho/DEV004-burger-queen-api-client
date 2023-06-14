@@ -4,7 +4,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 // import 'bootstrap/js/dist/dropdown'
 // import 'bootstrap/js/dist/collapse'
 import './Sidebar.css'
-import redLogo from '../../images/redLogoBG.png' 
+import redLogo from '../../../images/redLogoBG.png' 
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {

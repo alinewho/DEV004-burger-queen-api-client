@@ -30,10 +30,15 @@ const LoginPage = ({savedToken}) => {
 
     loginAxios(user, pwd)
       .then((res) => {
+        
         AlertSuccess();
         const accessToken = res.data.accessToken;
         savedToken(accessToken);
-        navigate("/breakfastmenu");
+        if (res.data.user.role === 'admin') return navigate('/dashboard');
+        if (res.data.user.role === 'cook') return navigate('/kitchendisplay');
+        if (res.data.user.role === 'waiter')  return navigate('/breakfastmenu');
+
+        // navigate("/breakfastmenu");
       })
       .catch((err) => {
         console.log(err);

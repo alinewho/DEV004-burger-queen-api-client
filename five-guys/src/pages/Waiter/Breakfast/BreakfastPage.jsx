@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../../components/Sidebar/Sidebar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import OrderComponent from "../../components/Order/OrderComponent";
-import { getProductsAxios, placeOrdersAxios } from "../../api/axios";
-import BreakfastMenu from "../../components/BreakfastMenu/BreakfastMenu";
-import { AlertError, alertToasty } from "../../components/Alert";
+import { getProductsAxios, placeOrdersAxios } from "../../../api/axios";
+import { AlertError, alertToasty } from "../../../components/Alert";
+import Sidebar from "../../../components/Waiter/Sidebar/Sidebar";
+import OrderComponent from "../../../components/Waiter/Order/OrderComponent";
+import BreakfastMenu from "../../../components/Waiter/BreakfastMenu/BreakfastMenu";
 
 const BreakfastPage = ({ token }) => {
   const [items, setItems] = useState([]);
@@ -49,8 +49,13 @@ const BreakfastPage = ({ token }) => {
   };
 
   const handleAddToCart = (item) => {
-    item.quantity = 1;
-    setCartItems([...cartItems, item]);
+    const itemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
+    if (itemInCart) {
+      incrementQty(itemInCart);
+    } else {
+      const newItem = { ...item, quantity: 1 };
+      setCartItems([...cartItems, newItem]);
+    }
   };
 
   const handleRemoveFromCart = (item) => {
