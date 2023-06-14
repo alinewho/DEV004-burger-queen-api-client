@@ -21,7 +21,7 @@ const BrowserRoutes = () => {
                 {/* <Route path="/kitchen" element={<KitchenPage />} />*/}
                 <Route path="/dashboard" element={<Dashboard />} /> 
                 <Route path='/breakfastmenu' element={<BreakfastPage token={token} />} />
-                <Route path='/lunchmenu' element={<LunchPage />} />
+                <Route path='/lunchmenu' element={<LunchPage  token={token} />} />
                 <Route path='/status' element={<StatusPage />} />
             </Routes>
         </BrowserRouter>
