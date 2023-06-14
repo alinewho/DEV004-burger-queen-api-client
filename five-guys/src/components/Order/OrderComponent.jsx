@@ -10,9 +10,10 @@ const OrderComponent = ({
   incrementQty,
   decrementQuantity,
   placeOrder,
+  client,
+  setClient,
 }) => {
   const [userId, setUserId] = useState("");
-  const [client, setClient] = useState("");
   const [status, setStatus] = useState("");
   const [dateEntry, setDateEntry] = useState([]);
 
@@ -31,9 +32,9 @@ const OrderComponent = ({
   return (
     <div>
       <h1>Current order</h1>
-      <form onSubmit={(e) => e.preventDefault()}>
-      <input placeholder="Name" autoComplete="off" required onChange={(e) => setClient(e.target.value)}></input>
-      </form>
+      
+      <input placeholder="Name" autoComplete="off" required value={client} onChange={(e) => setClient(e.target.value)}></input>
+      
       <p>Order</p> <p>ID</p>
       <hr />
       <p>Oder info</p>
@@ -72,7 +73,7 @@ const OrderComponent = ({
       <hr />
       <p>Total</p>
       <p>{totalSum}</p>
-      <button onClick={() => placeOrder(client)}> Place Order</button>
+      <button onClick={() => placeOrder()}> Place Order</button>
     </div>
   );
 };
