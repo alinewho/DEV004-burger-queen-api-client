@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import "./Order.css";
 // import CartCard from "../CartCard/CartCard";
-import AddBtn from "../../images/AddBtn.png";
-import RemoveBtn from "../../images/RemovalBtn.png";
+import AddBtn from "../../../images/AddBtn.png";
+import RemoveBtn from "../../../images/RemovalBtn.png";
 import "../CartCard/CartCard.css";
 // import { getOrdersAxios } from "../../api/axios";
 // import { getProductsAxios } from "../../api/axios";

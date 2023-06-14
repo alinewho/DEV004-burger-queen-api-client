@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./BreakfastMenu.css";
-import AddBtn from "../../images/AddBtn.png";
+import AddBtn from "../../../images/AddBtn.png";
 
 const BreakfastMenu = ({ token, items, handleAddToCart }) => {
  
@@ -33,7 +33,7 @@ const BreakfastMenu = ({ token, items, handleAddToCart }) => {
                     </section>
                   </section>
                   <section className="third">
-                    <button
+                    <button   
                       className="add-btn"
                       onClick={() => handleAddToCart(item)}
                     >

@@ -1,12 +1,12 @@
 // import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import LoginPage from '../pages/Login';
-import KitchenPage from '../pages/KitchenDisplay';
-import Dashboard from '../pages/Dashboard/Dashboard';
-import BreakfastPage from '../pages/Breakfast/BreakfastPage';
-import LunchPage from '../pages/LunchPage/LunchPage';
-import StatusPage from '../pages/StatusPage/StatusPage';
 import { useState } from 'react';
+import KitchenDisplay from '../pages/Kitchen/KitchenDisplay';
+import LoginPage from '../pages/Login';
+import Dashboard from '../pages/Admin/Dashboard/Dashboard';
+import BreakfastPage from '../pages/Waiter/Breakfast/BreakfastPage';
+import LunchPage from '../pages/Waiter/LunchPage/LunchPage';
+import StatusPage from '../pages/Waiter/StatusPage/StatusPage';
 
 const Router = () => {
 
@@ -21,8 +21,9 @@ const BrowserRoutes = () => {
                 {/* <Route path="/kitchen" element={<KitchenPage />} />*/}
                 <Route path="/dashboard" element={<Dashboard />} /> 
                 <Route path='/breakfastmenu' element={<BreakfastPage token={token} />} />
-                <Route path='/lunchmenu' element={<LunchPage  token={token} />} />
+                <Route path='/lunchmenu' element={<LunchPage token={token} />} />
                 <Route path='/status' element={<StatusPage />} />
+                <Route path='/kitchendisplay' element={<KitchenDisplay token={token} />} />
             </Routes>
         </BrowserRouter>
     )

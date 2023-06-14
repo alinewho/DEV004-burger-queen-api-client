@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./LunchMenu.css";
-import AddBtn from "../../images/AddBtn.png";
+import AddBtn from "../../../images/AddBtn.png";
 
 
 const LunchMenu = ({ token, items, handleAddToCart }) => {
