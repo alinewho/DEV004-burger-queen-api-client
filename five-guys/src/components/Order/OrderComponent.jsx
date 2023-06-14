@@ -1,5 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./Order.css";
+// import CartCard from "../CartCard/CartCard";
+import AddBtn from "../../images/AddBtn.png";
+import RemoveBtn from "../../images/RemovalBtn.png";
+import "../CartCard/CartCard.css";
 // import { getOrdersAxios } from "../../api/axios";
 // import { getProductsAxios } from "../../api/axios";
 
@@ -13,10 +17,6 @@ const OrderComponent = ({
   client,
   setClient,
 }) => {
-  const [userId, setUserId] = useState("");
-  const [status, setStatus] = useState("");
-  const [dateEntry, setDateEntry] = useState([]);
-
   // async function getOrders() {
   //   const response = await getOrdersAxios(token);
   //   setItems(response);
@@ -27,54 +27,108 @@ const OrderComponent = ({
     // promises();
   }, []);
 
- 
-
   return (
-    <div>
-      <h1>Current order</h1>
-      
-      <input placeholder="Name" autoComplete="off" required value={client} onChange={(e) => setClient(e.target.value)}></input>
-      
-      <p>Order</p> <p>ID</p>
+    <article className="currentorder">
+      <h1 className="order-text-1">Current order</h1>
+      <section className="order-info-section">
+        <section className="order-info">
+          <input
+            className="order-name shadow-none rounded-5"
+            placeholder="Client's name"
+            autoComplete="off"
+            required
+            value={client}
+            onChange={(e) => setClient(e.target.value)}
+          ></input>
+          <p className="order-id mb-0">Order #ID</p>
+        </section>
+        <hr />
+      </section>
       <hr />
-      <p>Oder info</p>
-      {cartItems.length > 0 ? (
-        <>
-          {cartItems?.map((order) => (
-            <div
-              key={order.id}
-              className="card mb-3 mt-5"
-              style={{ maxWidth: " 300px" }}
-            >
-              <div className="row g-0">
-                <div className="col-md-4">
+      <section className="order-part-section">
+        <p className="order-text-4">Order info</p>
+        <section className="order-items">
+          {/* card component or orders  */}
+          {cartItems.length > 0 ? (
+            cartItems?.map((order) => (
+              // <CartCard order={order} incrementQty={incrementQty} decrementQuantity={decrementQuantity} />
+              <article
+                key={order.id}
+                className="base-card card ms-3 mb-"
+                style={{ maxWidth: " 300px" }}
+              >
+                <figure className="food-container">
                   <img
                     src={order.image}
                     class="img-fluid rounded-start"
                     alt="..."
                   />
-                </div>
-                <div className="col-md-8">
-                  <div className="card-body">
-                    <h5 className="card-title">{order.name} </h5>
-                    <p className="card-text"></p>
-                    <button onClick={() => incrementQty(order)}>+</button>
-                    <p>{order.quantity}</p>
-                    <button onClick={() => decrementQuantity(order)}>-</button>
+                </figure>
+                <div className="card-second">
+                  <div className="card-desc">
+                    <h5 className="card-text-3">{order.name} </h5>
                   </div>
+                  <section className="card-price">
+                    <p className="card-text-4">$</p>
+                    <p className="card-text-5">{order.price}</p>
+                  </section>
                 </div>
-              </div>
-            </div>
-          ))}
-        </>
-      ) : (
-        <p>No orders</p>
-      )}
-      <hr />
-      <p>Total</p>
-      <p>{totalSum}</p>
-      <button onClick={() => placeOrder()}> Place Order</button>
-    </div>
+                <section className="card-third">
+                  <button
+                    className="card-add-btn"
+                    onClick={() => decrementQuantity(order)}
+                  >
+                    <img src={RemoveBtn} alt="minus button" />
+                  </button>
+                  <p>{order.quantity}</p>
+                  <button
+                    className="remove-btn"
+                    onClick={() => incrementQty(order)}
+                  >
+                    <img src={AddBtn} alt="add button" />
+                  </button>
+                </section>
+              </article>
+              //   <div className="row g-0">
+              //     <div className="col-md-4">
+              //       <img
+              //         src={order.image}
+              //         class="img-fluid rounded-start"
+              //         alt="..."
+              //       />
+              //     </div>
+              //     <div className="col-md-8">
+              //       <div className="card-body">
+              //         <h5 className="card-title">{order.name} </h5>
+              //         <p className="card-text"></p>
+              //         <button onClick={() => incrementQty(order)}>+</button>
+              //         <p>{order.quantity}</p>
+              //         <button onClick={() => decrementQuantity(order)}>-</button>
+              //       </div>
+              //     </div>
+              //   </div>
+              // </article>
+            ))
+            ) : (
+              <p>No orders</p>
+            )}
+        </section>
+      </section>
+      <section className="order-price">
+        <hr />
+        <section className="order-total">
+          
+          <p className="total mb-0">Total</p>
+          <p className="total-price mb-0"> ${totalSum} </p>
+        </section>
+      </section>
+      <button
+        className="btn custom bg-danger text-white w-100 mt-2 rounded-5"
+        onClick={() => placeOrder()}
+      >
+        PLACE ORDER
+      </button>
+    </article>
   );
 };
 
