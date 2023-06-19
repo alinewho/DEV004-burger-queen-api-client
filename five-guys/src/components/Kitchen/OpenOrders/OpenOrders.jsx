@@ -2,7 +2,7 @@ import React from "react";
 import Pagination from "../Pagination/Pagination";
 import CardOpen from "../CardOpen/CardOpen";
 
-const OrdersMenu = () => {
+const OpenOrders = ({token, pending, setPending}) => {
   return (
 
     <article className="bg-light vh-100 ">
@@ -17,8 +17,11 @@ const OrdersMenu = () => {
         </section>
         <section className="">
             <Pagination />
-        </section>      
-         <CardOpen />
+        </section>     
+        <section className="card-grid">
+          <CardOpen token={token} pending={pending} setPending={setPending} />
+        </section> 
+         
     </article>
     
  
@@ -26,4 +29,4 @@ const OrdersMenu = () => {
   );
 };
 
-export default OrdersMenu;
+export default OpenOrders;

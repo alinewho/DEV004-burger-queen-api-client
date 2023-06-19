@@ -34,7 +34,7 @@ const SidebarK = () => {
                                   <a href="#submenu" className="nav-link text-black" data-bs-toggle="collapse" aria-current="page">
                                   <i className="bi bi-receipt-cutoff"></i>
                                   <span className="ms-2 d-none d-sm-inline">Settings</span>
-                                  <i className="bi bi-arrow-down-short ms-1 ms-sm-3"></i>
+
                               </a>
                               </section>
                           </li>

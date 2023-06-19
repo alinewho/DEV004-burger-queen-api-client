@@ -33,6 +33,23 @@ export const getProductsAxios = async (token) => {
     console.log(error);
   }
 };
+
+export const placeOrdersAxios = async (token, order, options) => {
+  try {
+    await AppAxios.post("/orders", order, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    if (options.onSuccess) options.onSuccess();
+  } catch (error) {
+    if (options.onError) options.onError(error);
+    console.log(error);
+  }
+};
+
+
 export const getOrdersAxios = async (token) => {
   try {
     const orders = await AppAxios.get("/orders", {
@@ -47,17 +64,16 @@ export const getOrdersAxios = async (token) => {
   }
 };
 
-export const placeOrdersAxios = async (token, order, options) => {
+export const deleteOrderAxios = async (token, id) => {
   try {
-    await AppAxios.post("/orders", order, {
+    const response = await AppAxios.delete(`/orders/${id}`, {
+      withCredentials: true,
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
       },
     });
-    if (options.onSuccess) options.onSuccess();
+    return response.data;
   } catch (error) {
-    if (options.onError) options.onError(error);
     console.log(error);
   }
 };

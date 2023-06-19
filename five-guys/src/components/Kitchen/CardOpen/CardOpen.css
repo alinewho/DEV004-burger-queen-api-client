@@ -1,3 +1,9 @@
+.card-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 2rem;
+}
+
 .card-open {
   display: flex;
   flex-direction: column;
@@ -10,6 +16,12 @@
   box-shadow: 0px 20.4511px 71.5789px rgba(86, 89, 146, 0.1);
   border-radius: 19px;
 }
+.horizontal-line {
+    border: none;
+    border-top: 1px solid black;
+    width: 100%;
+  }
+
 .open--info {
   display: flex;
   width: 311px;
@@ -39,9 +51,15 @@
 }
 .hambur {
   display: flex;
-  gap: 185px;
+  flex-direction: column;
   height: 24px;
   width: 317px;
+}
+
+.open-products {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 }
 .open-text-5 {
   font-size: 20px;
@@ -50,25 +68,25 @@
 .open-text-6 {
   font-size: 20px;
 }
-.rectangle-5-4-3-4 {
-  border-radius: 8px;
-  height: 5px;
-  width: 317px;
-  background-color: rgba(101, 240, 115, 0.6000000238418579);
-}
+
 
 .btnsgroup {
   display: flex;
-  
+  width: 307px;
+  justify-content: flex-end;
   gap: 15px;
 }
+/* .btns-right {
+    display: flex;
+
+  } */
+
 .trash {
   height: 54px;
   width: 54px;
   border-radius: 8px;
-  height: 54px;
-  width: 54px;
   background-color: #d9d9d9;
+  border: none;
 }
 
 
@@ -76,8 +94,15 @@
   height: 54px;
   width: 54px;
   border-radius: 8px;
-  height: 54px;
-  width: 54px;
   background-color: #d9d9d9;
+  border: none;
+}
+.completed-btn {
+  width: 171px;
+  height: 54px;
+  border-radius: 8px;
+  background-color: #d9d9d9;
+  border: none;
+  font-size: 20px;
 }
 
