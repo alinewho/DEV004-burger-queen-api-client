@@ -1,0 +1,83 @@
+.card-open {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 23px 12px;
+  gap: 19px;
+  width: 341px;
+  height: auto;
+  background: #ffffff;
+  box-shadow: 0px 20.4511px 71.5789px rgba(86, 89, 146, 0.1);
+  border-radius: 19px;
+}
+.open--info {
+  display: flex;
+  width: 311px;
+  gap: 104px;
+}
+.open-name {
+  font-size: 25px;
+  font-family: Inter;
+}
+.open-id {
+  font-size: 18px;
+  font-family: Inter;
+}
+
+.card-open-items {
+  display: flex;
+  gap: 242px;
+  width: 311px;
+}
+.open-text-3 {
+  font-size: 15px;
+  font-family: Inter;
+}
+.open-text-4 {
+  font-size: 15px;
+  font-family: Inter;
+}
+.hambur {
+  display: flex;
+  gap: 185px;
+  height: 24px;
+  width: 317px;
+}
+.open-text-5 {
+  font-size: 20px;
+  font-family: Inter;
+}
+.open-text-6 {
+  font-size: 20px;
+}
+.rectangle-5-4-3-4 {
+  border-radius: 8px;
+  height: 5px;
+  width: 317px;
+  background-color: rgba(101, 240, 115, 0.6000000238418579);
+}
+
+.btnsgroup {
+  display: flex;
+  
+  gap: 15px;
+}
+.trash {
+  height: 54px;
+  width: 54px;
+  border-radius: 8px;
+  height: 54px;
+  width: 54px;
+  background-color: #d9d9d9;
+}
+
+
+.checkbtn {
+  height: 54px;
+  width: 54px;
+  border-radius: 8px;
+  height: 54px;
+  width: 54px;
+  background-color: #d9d9d9;
+}
+
