@@ -7,6 +7,7 @@ import Dashboard from '../pages/Admin/Dashboard/Dashboard';
 import BreakfastPage from '../pages/Waiter/Breakfast/BreakfastPage';
 import LunchPage from '../pages/Waiter/LunchPage/LunchPage';
 import StatusPage from '../pages/Waiter/StatusPage/StatusPage';
+import KitchenCompleted from '../pages/Kitchen/KitchenCompleted';
 
 const Router = () => {
 
@@ -24,6 +25,8 @@ const BrowserRoutes = () => {
                 <Route path='/lunchmenu' element={<LunchPage token={token} />} />
                 <Route path='/status' element={<StatusPage />} />
                 <Route path='/kitchendisplay' element={<KitchenDisplay token={token} />} />
+                <Route path='/completedorders' element={<KitchenCompleted token={token} />} />
+
             </Routes>
         </BrowserRouter>
     )
