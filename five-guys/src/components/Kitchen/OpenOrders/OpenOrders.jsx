@@ -1,6 +1,7 @@
 import React from "react";
 import Pagination from "../Pagination/Pagination";
 import CardOpen from "../CardOpen/CardOpen";
+import { Link } from "react-router-dom";
 
 const OpenOrders = ({token, pending, setPending}) => {
   return (
@@ -11,9 +12,9 @@ const OpenOrders = ({token, pending, setPending}) => {
             Open
             </button>
 
-            <button className="btn bg-white text-black w-10 mt-4 rounded-5">
+            <Link className="btn bg-white text-black w-10 mt-4 rounded-5" to='/completedorders' >
             Completed
-            </button>
+            </Link>
         </section>
         <section className="">
             <Pagination />

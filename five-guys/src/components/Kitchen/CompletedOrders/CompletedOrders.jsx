@@ -1,14 +1,16 @@
 import React from 'react'
 import Pagination from '../Pagination/Pagination'
-import CartCompleted from '../CardCompleted/CartCompleted'
+import CartCompleted from '../CardCompleted/CartCompleted';
+import { Link } from "react-router-dom";
 
-const CompletedOrders = () => {
+
+const CompletedOrders = ({ cookedOrders }) => { // Add curly braces to destructure the prop
   return (
     <article className="bg-light vh-100 ">
         <section className="">
-            <button className="btn bg-white text-black w-10 mt-4 rounded-5">
+            <Link className="btn bg-white text-black w-10 mt-4 rounded-5" to='/kitchendisplay'>
             Open
-            </button>
+            </Link>
 
             <button className="btn bg-dark text-white w-10 mt-4 rounded-5 ">
             Completed
@@ -18,9 +20,8 @@ const CompletedOrders = () => {
             <Pagination />
         </section>     
         <section className="card-grid">
-         <CartCompleted />
+         <CartCompleted cookedOrders={cookedOrders} /> {/* Pass the 'pending' prop */}
         </section> 
-         
     </article>
   )
 }

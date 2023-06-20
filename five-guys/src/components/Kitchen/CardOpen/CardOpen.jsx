@@ -30,10 +30,12 @@ const changeOrderStatus= async (id) => {
   });
 };
 
+const pendingOrders = pending.filter((open) => open.status === 'pending');
+
 
   return (
     <>
-      {pending?.map((pending) => (
+      {pendingOrders?.map((pending) => (
         <article key={pending.id} className="card-open">
           <div className="open--info">
             <p className="open-name mb-0">{pending.client} </p>
