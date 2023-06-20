@@ -77,3 +77,19 @@ export const deleteOrderAxios = async (token, id) => {
     console.log(error);
   }
 };
+
+export const patchOrderStatus = async (token, status, id, options) => {
+  try {
+    await AppAxios.patch(`/orders/${id}`, status, {
+      withCredentials: true,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    if (options.onSuccess) options.onSuccess();
+  } catch (error) {
+    if (options.onError) options.onError(error);
+    console.log(error);
+  }
+}

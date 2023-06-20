@@ -1,4 +1,5 @@
-import { deleteOrderAxios } from "../../../api/axios";
+import { deleteOrderAxios, patchOrderStatus } from "../../../api/axios";
+import { AlertError, alertToasty } from "../../Alert";
 import "./CardOpen.css";
 
 const CardOpen = ({ token, pending, setPending }) => {
@@ -12,6 +13,23 @@ const CardOpen = ({ token, pending, setPending }) => {
       console.log(error);
     }
   };
+const changeOrderStatus= async (id) => {
+  const dt = new Date().toISOString().slice(0, 19).replace("T", " ");
+  const newStatusAndDate = {
+    'status' : 'ready to deliver',
+    'dateProcessed' : dt
+  }
+  await patchOrderStatus(token, newStatusAndDate, id, {
+    onError: () => {
+      AlertError("Error");
+    },
+    onSuccess: () => {
+
+      alertToasty("Status changed successfully");
+    },
+  });
+};
+
 
   return (
     <>
@@ -40,7 +58,7 @@ const CardOpen = ({ token, pending, setPending }) => {
           </div>
           <hr className="horizontal-line m-0" />
           <section className="btnsgroup">
-            <button className="checkbtn">
+            <button className="checkbtn" onClick={() => changeOrderStatus(pending.id)}>
               <i className="bi bi-check-lg"></i>
             </button>
 
