@@ -2,6 +2,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     row-gap: 2rem;
+    margin-left: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 .card-open {
@@ -10,11 +12,11 @@
   align-items: center;
   padding: 23px 12px;
   gap: 19px;
-  width: 341px;
-  height: auto;
   background: #ffffff;
   box-shadow: 0px 20.4511px 71.5789px rgba(86, 89, 146, 0.1);
   border-radius: 19px;
+  width: 341px;
+  height: auto;
 }
 .horizontal-line {
     border: none;
@@ -26,6 +28,7 @@
   display: flex;
   width: 311px;
   gap: 104px;
+  align-items: baseline;
 }
 .open-name {
   font-size: 25px;
@@ -52,7 +55,7 @@
 .hambur {
   display: flex;
   flex-direction: column;
-  height: 24px;
+  height: auto;
   width: 317px;
 }
 
@@ -75,11 +78,8 @@
   width: 307px;
   justify-content: flex-end;
   gap: 15px;
+  margin-top: 10px;
 }
-/* .btns-right {
-    display: flex;
-
-  } */
 
 .trash {
   height: 54px;

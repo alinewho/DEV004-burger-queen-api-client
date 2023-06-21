@@ -3,7 +3,7 @@ import React from 'react'
 const Pagination = () => {
   return (
     <nav aria-label="...">
-        <ul className="pagination">
+        <ul className="pagination mt-4">
           <li class="page-item disabled">
             <a className="page-link" href="#" tabIndex="-1" aria-disabled="true">
                 <i className="bi bi-caret-left-fill"></i>
