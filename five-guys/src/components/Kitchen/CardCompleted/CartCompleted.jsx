@@ -1,4 +1,5 @@
 import React from "react";
+import "../CardOpen/CardOpen.css";
 
 const CartCompleted = ({ cookedOrders }) => {
   const completedOrders = cookedOrders.filter(
@@ -6,7 +7,7 @@ const CartCompleted = ({ cookedOrders }) => {
   );
 
   return (
-    <div>
+    <>
       {completedOrders?.map((pending) => (
         <article key={pending.id} className="card-open">
           <div className="open--info">
@@ -28,8 +29,6 @@ const CartCompleted = ({ cookedOrders }) => {
             
             </>
             )}
-            <p className="open-text-5">Hamburger</p>
-            <p className="open-text-6">1</p>
           </div>
           <hr className="horizontal-line m-0" />
           <section className="btnsgroup">
@@ -42,7 +41,7 @@ const CartCompleted = ({ cookedOrders }) => {
           </section>
         </article>
       ))}
-    </div>
+    </>
   );
 };
 
